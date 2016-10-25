@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Phone Book</title>
+    </head>
+    <body>
+        <h2>Django Phone Book</h2>
+        <p>What do you want to do?</p>
+        <form method='post'>
+            <p><a href='/create'>Create</a></p>
+            <p><a href='/read'>Read</a></p>
+            <p><a href='/update'>Update</a></p>
+            <p><a href='/delete'>Delete</a></p>
+        </form>
+        <form method="post" enctype="multipart/form-data">
+            <p><a href='/save_txt'>Save as txt</a></p>
+            <p><a href='/save_csv'>Save as csv</a></p>
+        </form>
+        <p>{% autoescape on %}{{ message }}{% endautoescape %}</p>
+        {% for post in posts %}
+            <div>
+                <p>published: {{ post.published_date }}</p>
+                <h1><a href="">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
+    </body>
+</html>

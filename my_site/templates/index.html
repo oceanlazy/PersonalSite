@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<html>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Vadim Kuznetsov - Personal website</title>
+    <style>
+        ul.top_menu {
+            margin: 0;
+            padding: 4px;
+            background: #786b59;
+        }
+        ul.top_menu li {
+            display: inline;
+            margin-right: 5px;
+            padding: 3px;
+        }
+        ul.top_menu a {
+             color: white
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="content">
+            <div class="header">
+                <div>{{  date  }}</div>
+                <h4 style="padding-left: 1%;padding-bottom: 1%;">Здравствуйте! Меня зовут Вадим Кузнецов и это мой персональный сайт.</h4>
+                <img src="{% static 'header.jpg' %}" alt="header_img">
+                <ul class="top_menu">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/blog">Блог</a></li>
+                    <li><a href="/">Статьи</a></li>
+                    <li><a href="/">Фотоальбом</a></li>
+                    <li><a href="/">Контакты</a></li>
+                </ul>
+            </div>
+            <div class="articles" style="padding-top:25px;padding-left:50px;">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="footer" style="text-align:center;">Vadim Kuznetsov 2016<br></div>
+    </div>
+</body>
+</html>

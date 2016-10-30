@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Article
+from .models import Article, Description
 from datetime import datetime
 from collections import OrderedDict
 import math
@@ -29,7 +29,7 @@ class Helper:
             return self.publications[(cur_page - 1) * self.RECORDS_ON_PAGE:cur_page * self.RECORDS_ON_PAGE]
 
     def pages_num_check(self, publications=''):
-        """How many pages of articles we have."""
+        """How many pages of publications we have."""
         if publications:
             return list(range(1, math.ceil(len(publications) / self.RECORDS_ON_PAGE) + 1))
         else:
@@ -44,40 +44,40 @@ def index(request, cur_page=1):
     cur_page = helper.page_check(cur_page)
     publications = helper.articles_prepare(cur_page)
     pages_num = helper.pages_num_check()
-    return render(request, 'index.html', {'date': helper.date, 'publications': publications, 'pages_num': pages_num,
-                                          'cur_page': cur_page, 'root': 'index', 'menu_items': helper.DEFAULT_MENU})
+    return render(request, 'publications.html',
+                  {'date': helper.date, 'publications': publications, 'pages_num': pages_num,
+                   'cur_page': cur_page, 'root': 'index', 'menu_items': helper.DEFAULT_MENU})
 
 
 def blog(request, cur_page=1):
     cur_page = helper.page_check(cur_page)
     publications = helper.articles_prepare(cur_page, 'блог')
     pages_num = helper.pages_num_check(publications)
-    return render(request, 'index.html', {'date': helper.date, 'publications': publications, 'pages_num': pages_num,
-                                          'cur_page': cur_page, 'root': 'blog', 'menu_items': helper.DEFAULT_MENU})
+    return render(request, 'publications.html',
+                  {'date': helper.date, 'publications': publications, 'pages_num': pages_num,
+                   'cur_page': cur_page, 'root': 'blog', 'menu_items': helper.DEFAULT_MENU})
 
 
 def articles(request, cur_page=1):
     menu_items = OrderedDict([('', 'Главная'), ('python', 'Python'), ('articles', 'SQL'), ('contacts', 'RenPy')])
-    cur_page = helper.page_check(cur_page)
-    publications = helper.articles_prepare(cur_page, 'articles_desc')
-    return render(request, 'index.html',
-                  {'date': helper.date, 'publications': publications, 'pages_num': list(range(1)),
+    description = Description.objects.filter(tag='articles_desc')[0]
+    return render(request, 'description.html',
+                  {'date': helper.date, 'description': description, 'pages_num': list(range(1)),
                    'cur_page': cur_page, 'root': 'articles', 'menu_items': menu_items})
 
 
 def python(request, cur_page=1):
     menu_items = OrderedDict([('', 'Главная'), ('django', 'Django'), ('pycharm', 'PyCharm'), ('git', 'Git'),
                               ('class', 'Классы'), ('generator', 'Генераторы')])
-    cur_page = helper.page_check(cur_page)
-    publications = helper.articles_prepare(cur_page, 'python')
-    pages_num = helper.pages_num_check(publications)
-    return render(request, 'index.html', {'date': helper.date, 'publications': publications, 'pages_num': pages_num,
-                                          'cur_page': cur_page, 'root': 'articles', 'menu_items': menu_items})
+    description = Description.objects.filter(tag='python')[0]
+    return render(request, 'description.html',
+                  {'date': helper.date, 'description': description, 'pages_num': list(range(1)),
+                   'cur_page': cur_page, 'root': 'articles', 'menu_items': menu_items})
 
 
 def contacts(request, cur_page=1):
     cur_page = helper.page_check(cur_page)
     publications = helper.articles_prepare(cur_page, 'contacts')
-    return render(request, 'index.html',
+    return render(request, 'publications.html',
                   {'date': helper.date, 'publications': publications, 'pages_num': list(range(1)),
                    'cur_page': cur_page, 'root': 'contacts', 'menu_items': helper.DEFAULT_MENU})

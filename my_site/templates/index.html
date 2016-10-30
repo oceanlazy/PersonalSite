@@ -1,5 +1,4 @@
 {% load staticfiles %}
-{% load tz %}
 <html>
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -36,17 +35,8 @@
                 </ul>
             </div>
             <div class="articles" style="padding-top:25px;padding-left:50px;">
-                {% for publication in publications %}
-                    <div class ="publications" style="padding: 3px 0 3px 3px;:2px;">
-                        <table>
-                            <td>
-                                <h3>{{ publication.title }}</h3>
-                                <div style="padding-bottom: 40px">Опубликовано: {{ publication.published_date | date:"E d, Y, H:i" }}</div>
-                                <div style="padding-top:2px;padding-bottom:40px;">{{ publication.text|linebreaksbr }}</div>
-                            </td>
-                        </table>
-                    </div>
-                {% endfor %}
+                {% block content %}
+                {% endblock %}
             </div>
             <div style="text-align:center;">
                 <span class="pages">

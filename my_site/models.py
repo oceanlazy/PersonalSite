@@ -14,3 +14,15 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Description(models.Model):
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    tag = models.CharField(max_length=25)
+
+    def publish(self):
+        self.save()
+
+    def __str__(self):
+        return self.title

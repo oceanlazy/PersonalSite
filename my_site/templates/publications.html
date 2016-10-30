@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block content %}
+    {% for publication in publications %}
+        <div class ="publications" style="padding: 3px 0 3px 3px;:2px;">
+            <table>
+                <td>
+                    <h3>{{ publication.title }}</h3>
+                    <div style="padding-bottom: 40px">Опубликовано: {{ publication.published_date | date:"d E, Y, H:i" }}</div>
+                    <div style="padding-top:2px;padding-bottom:40px;">{{ publication.text|linebreaksbr }}</div>
+                </td>
+            </table>
+        </div>
+    {% endfor %}
+{% endblock %}

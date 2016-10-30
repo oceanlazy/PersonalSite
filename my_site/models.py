@@ -5,10 +5,7 @@ from django.utils import timezone
 class Article(models.Model):
     title = models.CharField(max_length=200)
     text = models.TextField()
-    created_date = models.DateTimeField(
-            default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
+    published_date = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=25)
 
     def publish(self):

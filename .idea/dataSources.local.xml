@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Django default" uuid="26f302e6-561b-4ac8-8a93-d7677892dd5f">
+      <database-info product="PostgreSQL" version="9.5.4" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>admin</user-name>
+      <user-password>df8a</user-password>
+      <introspection-scope>personal_site:admin,pg_catalog,public</introspection-scope>
+      <resolve-scope>personal_site:admin,public</resolve-scope>
+    </data-source>
+  </component>
+</project>

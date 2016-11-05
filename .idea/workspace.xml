@@ -1,28 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="51bd0e01-916d-477b-8e6d-04bc58e8e365" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_site/migrations/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_site/templates/headers.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_site/templates/posts.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/my_site/templates/publication.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/runtime.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/PersonalSite.iml" afterPath="$PROJECT_DIR$/.idea/PersonalSite.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/26f302e6-561b-4ac8-8a93-d7677892dd5f.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/26f302e6-561b-4ac8-8a93-d7677892dd5f.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="51bd0e01-916d-477b-8e6d-04bc58e8e365" name="Default" comment="update">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_site/admin.py" afterPath="$PROJECT_DIR$/my_site/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_site/models.py" afterPath="$PROJECT_DIR$/my_site/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_site/templates/description.html" afterPath="$PROJECT_DIR$/my_site/templates/description.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_site/templates/index.html" afterPath="$PROJECT_DIR$/my_site/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_site/tests.py" afterPath="$PROJECT_DIR$/my_site/tests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_site/views.py" afterPath="$PROJECT_DIR$/my_site/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site_root/migrations/__init__.py" afterPath="$PROJECT_DIR$/site_root/migrations/__init__.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site_root/settings.py" afterPath="$PROJECT_DIR$/site_root/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site_root/urls.py" afterPath="$PROJECT_DIR$/site_root/urls.py" />
     </list>
     <ignored path="DjangoSite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,7 +34,7 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my_site/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
+            <state relative-caret-position="144">
               <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
@@ -65,7 +46,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my_site/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1908">
+            <state relative-caret-position="1836">
               <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
                 <element signature="e#40#85#0" expanded="true" />
@@ -119,8 +100,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/site_root/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="87" column="69" selection-start-line="87" selection-start-column="69" selection-end-line="87" selection-end-column="69" />
+            <state relative-caret-position="312">
+              <caret line="96" column="15" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
               <folding>
                 <element signature="e#377#386#0" expanded="true" />
               </folding>
@@ -218,6 +199,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -317,14 +299,13 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vadimkuznetsov" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -941,7 +922,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478286138022</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="update">
+      <created>1478330185393</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1478330185393</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -955,9 +943,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24058416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24058416" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1245,7 +1233,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1300,7 +1287,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my_site/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
+        <state relative-caret-position="144">
           <caret line="10" column="24" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
@@ -1334,7 +1321,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/my_site/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1908">
+        <state relative-caret-position="1836">
           <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
           <folding>
             <element signature="e#40#85#0" expanded="true" />
@@ -1354,8 +1341,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/site_root/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="87" column="69" selection-start-line="87" selection-start-column="69" selection-end-line="87" selection-end-column="69" />
+        <state relative-caret-position="312">
+          <caret line="96" column="15" selection-start-line="96" selection-start-column="15" selection-end-line="96" selection-end-column="15" />
           <folding>
             <element signature="e#377#386#0" expanded="true" />
           </folding>

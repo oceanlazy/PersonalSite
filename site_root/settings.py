@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'personal_site',
         'USER': 'admin',
         'PASSWORD': ' ',
-        'HOST': 'localhost',
+        'HOST': 'localhost'
         'PORT': '',
     }
 }

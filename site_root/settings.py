@@ -25,7 +25,7 @@ SECRET_KEY = 'p@+bj6ds_#3c(de3g@3s!4za3s8e(oubtop+mrv_%xyx=*=ug('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'vadimkuznetsov.herokuapp.com']
 
 # Application definition
 
@@ -72,20 +72,20 @@ WSGI_APPLICATION = 'site_root.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'personal_site',
         'USER': 'admin',
         'PASSWORD': ' ',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+'''
+DATABASES = {
+    'default': dj_database_url.config(default="my dirty little secret", conn_max_age=600)}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -106,4 +106,3 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'collectstatic')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-

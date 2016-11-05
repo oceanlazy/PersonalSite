@@ -29,7 +29,7 @@
                 <h4 style="padding-left: 1%;padding-bottom: 1%;">Здравствуйте! Меня зовут Вадим Кузнецов и это мой персональный сайт.</h4>
                 <img src="{% static 'header.jpg' %}" alt="header_img">
                 <ul class="top_menu">
-                    {% for link, title in menu_items.items %}
+                    {% for title, link  in menu_items.items %}
                         <li><a href="/{{ link }}">{{ title }}</a></li>
                     {% endfor %}
                 </ul>

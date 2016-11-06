@@ -79,13 +79,13 @@ DATABASES = {
         'NAME': 'personal_site',
         'USER': 'admin',
         'PASSWORD': ' ',
-        'HOST': 'localhost'
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
 '''
 DATABASES = {
-    'default': dj_database_url.config(default="my dirty little secret", conn_max_age=600)}
+    'default': dj_database_url.config(default="my little secret", conn_max_age=600)}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

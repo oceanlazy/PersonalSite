@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
 {% block content %}
-    {% for publication in page %}
+    {% for publication in content_page %}
         <div class ="publications" style="padding: 3px 0 3px 3px;:2px;">
             <h3><a href="/publication/{{ publication.slug }}">{{ publication.title }}</a></h3>
             <div style="padding-bottom: 40px">Опубликовано: {{ publication.published_date | date:"d E, Y, H:i" }}</div>

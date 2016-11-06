@@ -1,29 +1,19 @@
 #!/usr/local/bin/python
 # coding=utf-8
 
-from django.shortcuts import render, redirect
-from .models import Publication
+from django.views.generic import TemplateView
 from collections import OrderedDict
-from django.utils import timezone
+from .models import Publication
 import math
 
 
 class Helper:
     RECORDS_ON_PAGE = 5
-    PAGE_DATE = timezone.now()
-    DEFAULT_MENU = OrderedDict([('Главная', ''), ('Блог', 'blog'), ('Статьи', 'articles'), ('Контакты', 'contacts')])
-    library_menus = {
+    LIBRARY_MENUS = {
+        'default': OrderedDict([('Главная', ''), ('Блог', 'blog'), ('Статьи', 'articles'), ('Контакты', 'contacts')]),
         'articles': OrderedDict([('Python', 'articles/python'), ('SQL', 'articles/sql')]),
         'python': OrderedDict([('Django', 'articles/python/django')]),
     }
-
-    @staticmethod
-    def page_check(page):
-        """Check current page."""
-        if page is not None:
-            return int(page)
-        else:
-            return 1
 
     def get_content(self, cur_page, publications):
         """Prepare the articles for displaying."""
@@ -31,82 +21,132 @@ class Helper:
 
     def pages_num(self, publications=''):
         """How many pages of publications we have."""
-        if publications:
-            return list(range(1, math.ceil(len(publications) / self.RECORDS_ON_PAGE) + 1))
-        else:
-            return list(
-                range(1, math.ceil(len(Publication.objects.order_by('-published_date')) / self.RECORDS_ON_PAGE) + 1))
+        return list(range(1, math.ceil(len(publications) / self.RECORDS_ON_PAGE) + 1))
 
-    def get_menu(self, slug, slug_prev=''):
+    def get_menu(self, slug, slug_prev='articles'):
+        """Get menu or leave menu if not exist."""
         menu = OrderedDict([('Главная', '')])
         try:
-            menu.update(self.library_menus[slug])
+            menu.update(self.LIBRARY_MENUS[slug])
         except KeyError:
-            try:
-                menu.update(self.library_menus[slug_prev])
-            except KeyError:
-                menu = self.DEFAULT_MENU
+            menu.update(self.LIBRARY_MENUS[slug_prev])
         return menu
 
 
+class IndexView(TemplateView, Helper):
+    template_name = "headers.html"
 
-helper = Helper()
+    def cur_page_check(self):
+        try:
+            return int(self.kwargs['cur_page'])
+        except (KeyError, TypeError):
+            return 1
 
-
-def index(request, cur_page=1):
-    """Main page of site, non-default is for url like "/" ."""
-    cur_page = helper.page_check(cur_page)
-    publications = Publication.objects.filter().order_by('-published_date')
-    pages_num = helper.pages_num()
-    page = helper.get_content(cur_page, publications)
-    return render(request, 'headers.html',
-                  {'date': helper.PAGE_DATE, 'page': page, 'pages_num': pages_num,
-                   'cur_page': cur_page, 'root': 'index', 'menu_items': helper.DEFAULT_MENU})
-
-
-def blog(request, cur_page):
-    cur_page = helper.page_check(cur_page)
-    publications = Publication.objects.filter(tags__contains='blog').order_by('-published_date')
-    pages_num = helper.pages_num(publications)
-    page = helper.get_content(cur_page, publications)
-    return render(request, 'posts.html',
-                  {'date': helper.PAGE_DATE, 'page': page, 'pages_num': pages_num,
-                   'cur_page': cur_page, 'root': 'blog', 'menu_items': helper.DEFAULT_MENU})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['root'] = 'index'
+        context['cur_page'] = self.cur_page_check()
+        context['publication'] = Publication.objects.filter().order_by('-published_date')
+        context['pages_num'] = self.pages_num(context['publication'])
+        context['content_page'] = self.get_content(context['cur_page'], context['publication'])
+        context['menu_items'] = self.LIBRARY_MENUS['default']
+        return context
 
 
-def publication(request, slug):
-    return render(request, 'publication.html', {'publication': Publication.objects.get(slug=slug),
-                                                'date': helper.PAGE_DATE,
-                                                'menu_items': helper.DEFAULT_MENU})
+class BlogView(TemplateView, Helper):
+    template_name = "posts.html"
+
+    def cur_page_check(self):
+        try:
+            return int(self.kwargs['cur_page'])
+        except (KeyError, TypeError):
+            return 1
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        publication = Publication.objects.filter(tags__contains='blog').order_by('-published_date')
+        context['cur_page'] = self.cur_page_check()
+        context['pages_num'] = self.pages_num(publication)
+        context['content_page'] = self.get_content(context['cur_page'], publication)
+        context['menu_items'] = self.LIBRARY_MENUS['default']
+        return context
 
 
-def articles(request, slug_1, slug_2, page):
-    root = 'articles'
-    if not slug_1:
-        slug_1 = 'articles'
-    else:
-        if slug_1.isdigit():
-            page = slug_1
-            slug_1 = 'articles'
-        root = 'articles/{}'.format(slug_1)
-    content = Publication.objects.filter(tags__contains=slug_1).order_by('-published_date')
-    menu = helper.get_menu(slug_1)
-    if slug_2:
-        if slug_2.isdigit():
-            page = int(slug_2)
-        else:
-            content = Publication.objects.filter(tags__contains=slug_2).order_by('-published_date')
-            menu = helper.get_menu(slug_2, slug_1)
-            root = '{}_{}'.format(slug_1, slug_2)
-    cur_page = helper.page_check(page)
-    pages_num = helper.pages_num(content)
-    content = helper.get_content(cur_page, content)
-    return render(request, 'headers.html',
-                  {'date': helper.PAGE_DATE, 'page': content, 'pages_num': pages_num,
-                   'cur_page': cur_page, 'root': root, 'menu_items': menu})
+class ArticlesView(TemplateView, Helper):
+    template_name = "headers.html"
+
+    def cur_page_check(self):
+        try:
+            return int(self.kwargs['slug_1'])
+        except (KeyError, TypeError):
+            return 1
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['root'] = 'articles'
+        context['menu_items'] = self.get_menu('articles')
+        context['content_page'] = Publication.objects.filter(tags__contains='articles').order_by('-published_date')
+        context['cur_page'] = self.cur_page_check()
+        context['pages_num'] = self.pages_num(context['content_page'])
+        context['content_page'] = self.get_content(context['cur_page'], context['content_page'])
+        return context
 
 
-def contacts(request):
-    return render(request, 'description.html', {'publication': Publication.objects.get(slug='kontakty'),
-                                                'date': helper.PAGE_DATE,
-                                                'menu_items': helper.DEFAULT_MENU})
+class ArticlesCategoryView(TemplateView, Helper):
+    template_name = "headers.html"
+
+    def cur_page_check(self):
+        try:
+            return int(self.kwargs['slug_2'])
+        except (KeyError, TypeError):
+            return 1
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['root'] = 'articles/{}'.format(kwargs['slug_1'])
+        context['menu_items'] = self.get_menu(kwargs['slug_1'])
+        context['content_page'] = Publication.objects.filter(tags__contains=kwargs['slug_1']).order_by('-published_date')
+        context['cur_page'] = self.cur_page_check()
+        context['pages_num'] = self.pages_num(context['content_page'])
+        context['content_page'] = self.get_content(context['cur_page'], context['content_page'])
+        return context
+
+
+class ArticlesSubCategoryView(TemplateView, Helper):
+    template_name = "headers.html"
+
+    def cur_page_check(self):
+        try:
+            return int(self.kwargs['slug_3'])
+        except (KeyError, TypeError):
+            return 1
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['root'] = 'articles/{}/{}'.format(kwargs['slug_1'], kwargs['slug_2'])
+        context['menu_items'] = self.get_menu(kwargs['slug_2'], kwargs['slug_1'])
+        context['content_page'] = Publication.objects.filter(tags__contains=kwargs['slug_2']).order_by('-published_date')
+        context['cur_page'] = self.cur_page_check()
+        context['pages_num'] = self.pages_num(context['content_page'])
+        context['content_page'] = self.get_content(context['cur_page'], context['content_page'])
+        return context
+
+
+class RecordView(TemplateView, Helper):
+    template_name = "publication.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['publication'] = Publication.objects.get(slug=kwargs['slug'])
+        context['menu_items'] = self.LIBRARY_MENUS['default']
+        return context
+
+
+class AboutView(TemplateView, Helper):
+    template_name = "about.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['publication'] = Publication.objects.get(slug='kontakty')
+        context['menu_items'] = self.LIBRARY_MENUS['default']
+        return context

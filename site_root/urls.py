@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^static/(?P<path>.*)/$', serve, {'document_root': settings.STATIC_ROOT}),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^publication/(?P<slug>[\w-]+)/$', views.RecordView.as_view()),
-    url(r'^contacts/$', views.AboutView.as_view()),
+    url(r'^about/$', views.AboutView.as_view()),
     url(r'^index/(?P<cur_page>\d+)?/$', views.IndexView.as_view()),
     url(r'^blog/(?P<cur_page>\d+)?/?$', views.BlogView.as_view()),
     url(r'^articles/(?P<slug_1>[\d]+)?/?$', views.ArticlesView.as_view()),
